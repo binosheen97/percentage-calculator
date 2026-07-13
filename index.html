@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>Percentage Calculator - Free Online Percent Calculator</title>
+    <meta name="description" content="Free percentage calculator. Calculate percentages instantly - find what percent of a number, percentage increase/decrease, discount price, and more. Fast and accurate.">
+    <meta name="keywords" content="percentage calculator, percent calculator, percentage increase, percentage decrease, discount calculator, what percent of, percentage change">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://binosheen97.github.io/percentage-calculator/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Percentage Calculator - Free Online Percent Calculator">
+    <meta property="og:description" content="Calculate percentages instantly. Find percent of a number, percentage change, discount prices and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://binosheen97.github.io/percentage-calculator/">
+
+    <!-- Google Verification -->
+    <meta name="google-site-verification" content="cBtI9qnEEtgjEyN--AIkGKP__lNGdHbMJEZI72XqDSo" />
+    <meta name="google-adsense-account" content="ca-pub-9209701505864374">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QV903LBHRQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QV903LBHRQ');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9209701505864374" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔢 Percentage Calculator</h1>
+            <p class="subtitle">Calculate Percentages Instantly & Accurately</p>
+        </header>
+
+        <div class="calculator-container">
+
+            <!-- Left Column -->
+            <div class="left-column">
+
+                <!-- Tab Buttons -->
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="switchTab('percent-of')">% of Number</button>
+                    <button class="tab-btn" onclick="switchTab('what-percent')">What %?</button>
+                    <button class="tab-btn" onclick="switchTab('percent-change')">% Change</button>
+                    <button class="tab-btn" onclick="switchTab('discount')">Discount</button>
+                </div>
+
+                <!-- Tab 1: What is X% of Y -->
+                <div class="calc-card" id="tab-percent-of">
+                    <h2>What is X% of Y?</h2>
+                    <p class="card-desc">Example: What is 20% of 500?</p>
+                    <div class="input-group">
+                        <label>Percentage (%)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="po-percent" placeholder="20" min="0" step="any">
+                            <span class="unit-label">%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Of Number</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="po-number" placeholder="500" min="0" step="any">
+                        </div>
+                    </div>
+                    <button class="calculate-btn" onclick="calcPercentOf()">
+                        <span>Calculate</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="error-msg" id="err-po"></div>
+                    <div class="result-box" id="res-percent-of"></div>
+                </div>
+
+                <!-- Tab 2: X is what % of Y -->
+                <div class="calc-card hidden" id="tab-what-percent">
+                    <h2>X is What % of Y?</h2>
+                    <p class="card-desc">Example: 50 is what % of 200?</p>
+                    <div class="input-group">
+                        <label>Value (X)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="wp-value" placeholder="50" min="0" step="any">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Total (Y)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="wp-total" placeholder="200" min="0" step="any">
+                        </div>
+                    </div>
+                    <button class="calculate-btn" onclick="calcWhatPercent()">
+                        <span>Calculate</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="error-msg" id="err-wp"></div>
+                    <div class="result-box" id="res-what-percent"></div>
+                </div>
+
+                <!-- Tab 3: Percentage Change -->
+                <div class="calc-card hidden" id="tab-percent-change">
+                    <h2>Percentage Increase / Decrease</h2>
+                    <p class="card-desc">Example: From 80 to 100 = 25% increase</p>
+                    <div class="input-group">
+                        <label>Original Value</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="pc-original" placeholder="80" step="any">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>New Value</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="pc-new" placeholder="100" step="any">
+                        </div>
+                    </div>
+                    <button class="calculate-btn" onclick="calcPercentChange()">
+                        <span>Calculate</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="error-msg" id="err-pc"></div>
+                    <div class="result-box" id="res-percent-change"></div>
+                </div>
+
+                <!-- Tab 4: Discount -->
+                <div class="calc-card hidden" id="tab-discount">
+                    <h2>Discount Calculator</h2>
+                    <p class="card-desc">Example: $200 with 30% off = $140</p>
+                    <div class="input-group">
+                        <label>Original Price</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="dc-price" placeholder="200" min="0" step="any">
+                            <span class="unit-label">$</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Discount (%)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="dc-discount" placeholder="30" min="0" max="100" step="any">
+                            <span class="unit-label">%</span>
+                        </div>
+                    </div>
+                    <button class="calculate-btn" onclick="calcDiscount()">
+                        <span>Calculate</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <div class="error-msg" id="err-dc"></div>
+                    <div class="result-box" id="res-discount"></div>
+                </div>
+
+                <!-- Ad Unit -->
+                <div class="ad-container">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-9209701505864374"
+                         data-ad-slot="auto"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            </div>
+
+            <!-- Right Column: Quick Reference -->
+            <div class="right-column">
+                <div class="reference-card">
+                    <h3>📌 Quick Reference</h3>
+                    <div class="formula-list">
+                        <div class="formula-item">
+                            <span class="formula-title">X% of Y</span>
+                            <span class="formula-eq">= (X ÷ 100) × Y</span>
+                        </div>
+                        <div class="formula-item">
+                            <span class="formula-title">X is what % of Y</span>
+                            <span class="formula-eq">= (X ÷ Y) × 100</span>
+                        </div>
+                        <div class="formula-item">
+                            <span class="formula-title">% Increase</span>
+                            <span class="formula-eq">= ((New−Old) ÷ Old) × 100</span>
+                        </div>
+                        <div class="formula-item">
+                            <span class="formula-title">Discount Price</span>
+                            <span class="formula-eq">= Price × (1 − Discount%/100)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="examples-card">
+                    <h3>💡 Common Examples</h3>
+                    <div class="example-list">
+                        <div class="example-item" onclick="loadExample('po', 15, 80)">
+                            <span>What is 15% of 80?</span>
+                            <span class="example-ans">= 12</span>
+                        </div>
+                        <div class="example-item" onclick="loadExample('po', 20, 500)">
+                            <span>What is 20% of 500?</span>
+                            <span class="example-ans">= 100</span>
+                        </div>
+                        <div class="example-item" onclick="loadExample('wp', 25, 200)">
+                            <span>25 is what % of 200?</span>
+                            <span class="example-ans">= 12.5%</span>
+                        </div>
+                        <div class="example-item" onclick="loadExample('pc', 100, 150)">
+                            <span>100 → 150 change?</span>
+                            <span class="example-ans">= +50%</span>
+                        </div>
+                        <div class="example-item" onclick="loadExample('dc', 100, 25)">
+                            <span>$100 with 25% off?</span>
+                            <span class="example-ans">= $75</span>
+                        </div>
+                        <div class="example-item" onclick="loadExample('dc', 299, 10)">
+                            <span>$299 with 10% off?</span>
+                            <span class="example-ans">= $269.10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <div class="info-card">
+                <h2>How to Calculate Percentages</h2>
+                <p>A percentage is a way to express a number as a fraction of 100. The word "percent" comes from the Latin "per centum" meaning "per hundred."</p>
+                <p>Use our calculator for instant results, or learn the formulas to calculate mentally!</p>
+            </div>
+
+            <div class="info-card">
+                <h2>Common Percentage Uses</h2>
+                <ul>
+                    <li><strong>Shopping:</strong> Calculate discounts and sale prices</li>
+                    <li><strong>Finance:</strong> Interest rates, tax calculations, tips</li>
+                    <li><strong>School:</strong> Grade scores and test results</li>
+                    <li><strong>Business:</strong> Profit margins, growth rates, commissions</li>
+                    <li><strong>Health:</strong> Body fat percentage, nutrition labels</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Percentage Tips & Tricks</h2>
+                <ul>
+                    <li><strong>10% trick:</strong> Move decimal one place left (10% of 85 = 8.5)</li>
+                    <li><strong>1% trick:</strong> Move decimal two places left (1% of 300 = 3)</li>
+                    <li><strong>50%:</strong> Just divide by 2</li>
+                    <li><strong>25%:</strong> Divide by 4</li>
+                    <li><strong>5%:</strong> Find 10%, then halve it</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="/">Home</a> | <a href="/age-calculator/">Age Calculator</a> | <a href="/bmi-calculator/">BMI Calculator</a> | <a href="/percentage-calculator/">Percentage Calculator</a></p>
+            <p><a href="/about.html">About Us</a> | <a href="/contact.html">Contact</a> | <a href="/privacy-policy.html">Privacy Policy</a> | <a href="/terms-of-service.html">Terms of Service</a></p>
+            <p>&copy; 2026 Percentage Calculator. Free online percent calculator.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
